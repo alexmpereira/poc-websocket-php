@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  ws-backend:
+    build:
+      context: ./backend
+    container_name: poc_ws_backend
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./backend:/app
+    command: php server.php
+
+  ws-frontend:
+    image: nginx:alpine
+    container_name: poc_ws_frontend
+    ports:
+      - "8000:80"
+    volumes:
+      - ./frontend:/usr/share/nginx/html
